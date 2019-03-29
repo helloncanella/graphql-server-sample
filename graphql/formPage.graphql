@@ -61,8 +61,14 @@ type FormPage {
   components: [FormComponent!]!
 }
 
+type FormMenuItem {
+  prettyID: String!
+  name: String!
+  subItems: [FormMenuItem!]!
+}
+
 type Query {
-  rootTabs: [FormPage!]!
-  subTabs(parentPageId: ID): [FormPage!]!
+  rootMenu: [FormMenuItem!]!
+  subMenu(parentPageId: ID): [FormMenuItem!]!
   formPage(pageID: ID!): FormPage!
 }

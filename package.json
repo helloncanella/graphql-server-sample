@@ -13,7 +13,10 @@
     "nodemon": "^1.18.10"
   },
   "nodemonConfig": {
-    "delay": "1000",
-    "ext": "graphql json js"
+    "ext": "graphql json js",
+    "events": {
+      "restart": "kill $(lsof -t -i:4000)",
+      "crash": "kill $(lsof -t -i:4000)"
+    }
   }
 }
