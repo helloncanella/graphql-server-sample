@@ -1,10 +1,38 @@
 scalar JSON
+scalar Color
 
-interface Input {
+type ColorInput {
   id: ID!
-  value: InputValue
-  type: InputType
+  value: Color
 }
+
+type OptionsValue {
+  text: String
+  required: Boolean
+  checked: Boolean
+}
+
+type OptionsInput {
+  id: ID!
+  value: OptionsValue
+  allowInsertion: Boolean
+  allowDeletion: Boolean
+  controlRequiredness: Boolean
+}
+
+type QuestionsValue {
+  id: ID!
+  text: String
+  required: Boolean
+}
+
+type QuestionsInput {
+  id: ID!
+  value: QuestionsValue
+  allowInsertion: Boolean
+}
+
+union Input = ColorInput | OptionsInput | QuestionsInput
 
 type Field {
   title: String!
@@ -21,14 +49,20 @@ type AnyComponent {
   props: JSON
 }
 
-union Component = FieldSet | AnyComponent
+union FormComponent = FieldSet | AnyComponent
 
 type FormPage {
   id: ID!
   prettyID: String
-  pages: [FormPage!]
+  pages: [FormPage!]!
   title: String
   description: String
   name: String!
-  components: [Component]
+  components: [FormComponent!]!
+}
+
+type Query {
+  rootTabs: [FormPage!]!
+  subTabs(parentPageId: ID): [FormPage!]!
+  formPage(pageID: ID!): FormPage!
 }
