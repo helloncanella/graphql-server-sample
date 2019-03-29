@@ -1,0 +1,19 @@
+{
+  "name": "graphql-server-sample",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "esm": "^3.2.22",
+    "graphql-import": "^0.7.1",
+    "graphql-yoga": "^1.17.4",
+    "nodemon": "^1.18.10"
+  },
+  "nodemonConfig": {
+    "delay": "1000",
+    "ext": "graphql json js"
+  }
+}

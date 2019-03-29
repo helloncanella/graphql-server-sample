@@ -1,0 +1,34 @@
+scalar JSON
+
+interface Input {
+  id: ID!
+  value: InputValue
+  type: InputType
+}
+
+type Field {
+  title: String!
+  description: String!
+  input: Input
+}
+
+type FieldSet {
+  fields: [Field]
+}
+
+type AnyComponent {
+  name: String
+  props: JSON
+}
+
+union Component = FieldSet | AnyComponent
+
+type FormPage {
+  id: ID!
+  prettyID: String
+  pages: [FormPage!]
+  title: String
+  description: String
+  name: String!
+  components: [Component]
+}
